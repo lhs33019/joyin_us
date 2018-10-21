@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/connect', function () {
+    return response()->json(["hello" => "world!"]);
+});
