@@ -17,5 +17,5 @@ Route::get('/', function () {
 
 
 Route::get('/connect', function () {
-    return response()->json(["hello" => "world!"]);
+    return response()->json(["hello" => "i got you!"]);
 });
