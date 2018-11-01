@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('/connect', function () {
-    return response()->json(["hello" => "i got you!"]);
-});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
