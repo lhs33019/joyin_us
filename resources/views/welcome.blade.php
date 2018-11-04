@@ -70,7 +70,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">{{\Auth::user()->name}}님 환영합니다</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
@@ -85,7 +85,7 @@
 
             @auth
                 <div class="links">
-                    <a href="https://laracasts.com">TODO 관리</a>
+                    <a href="{{ route('todoList') }}">TODO 관리</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
