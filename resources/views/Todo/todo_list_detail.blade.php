@@ -90,9 +90,9 @@
                                                         <br/>
                                                         <div class="input-group registration-date-time">
                                                             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-                                                            <input class="form-control" name="date" id="registration-date" type="text">
+                                                            <input class="form-control" name="date" id="registration-date" type="date">
                                                             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
-                                                            <input class="form-control" name="time" id="registration-time" type="text">
+                                                            <input class="form-control" name="time" id="registration-time" type="time">
                                                             <span class="input-group-btn">
                                                                 <button class="btn btn-default" type="button" onclick="addNow()"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Now</button>
                                                                 <button class="btn btn-default" type="button" onclick="stopNow()"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Stop</button>
@@ -113,7 +113,7 @@
                         <div class="table-container">
                             <table class="table table-filter">
                                 <tbody>
-                                @foreach($todos as $index => $todo)
+                                @foreach($todos as $todo)
                                     <tr data-status="{{$todo->isComplete}}">
                                         <td>
                                             <div class="media">
@@ -127,75 +127,7 @@
                                                         <span class="pull-right {{$todo->isComplete}}">{{$todo->isComplete}}</span>
                                                     </h4>
                                                     <p class="summary">{{$todo->content}}</p>
-                                                    <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#putTodo" data-whatever="@mdo">수정하기</button>
-                                                    <div class="modal fade" id="putTodo" tabindex="-1" role="dialog" aria-labelledby="putTodoLabel">
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                                                    <h4 class="modal-title" id="putTodoLabel">TODO 수정</h4>
-                                                                </div>
-                                                                <form action="{{ url()->current().'/todo' }}" method="POST" id="put">
-                                                                    <input type="hidden" name="list_id" value="{{$list->id}}">
-                                                                    <input type="hidden" name="id" value="{{$todo->id}}">
-                                                                    <input type="hidden" name="index" value="{{$index}}">
-                                                                    <input name="_method" type="hidden" value="PUT">
-                                                                    @csrf
-                                                                    <div class="modal-body">
-                                                                        <div class="form-group">
-                                                                            <label for="recipient-name" class="control-label">제목:</label>
-                                                                            <input class="form-control" type="text" id="recipient-name" name="title" value="{{$todo->title}}">
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="message-text" class="control-label">내용:</label>
-                                                                            <textarea class="form-control" id="message-text" name="content">{{$todo->content}}</textarea>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="message-text" class="control-label">우선순위:</label>
-                                                                            <input type="number" class="form-control" id="recipient-name" name="seq" min="1" max="{{$list->todo_count}}">
-                                                                        </div>
-                                                                        <div class="btn-group" data-toggle="buttons">
-                                                                            <label class="btn btn-secondary">
-                                                                                <input type="radio" name="isComplete" id="option1" autocomplete="off" value="complete"> 완료
-                                                                            </label>
-                                                                            <label class="btn btn-secondary">
-                                                                                <input type="radio" name="isComplete" id="option2" autocomplete="off" value="progress"> 진행
-                                                                            </label>
-                                                                        </div>
-                                                                        <div class="form-group registration-date">
-                                                                            <label class="control-label col-sm-3" for="registration-date">올바른 형식만 전송</label>
-                                                                            <br/>
-                                                                            <br/>
-                                                                            <div class="input-group registration-date-time">
-                                                                                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-                                                                                <input class="form-control" name="date" id="registration-date" type="text">
-                                                                                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
-                                                                                <input class="form-control" name="time" id="registration-time" type="text">
-                                                                                <span class="input-group-btn">
-                                                                                    <button class="btn btn-default" type="button" onclick="addNow()"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Now</button>
-                                                                                    <button class="btn btn-default" type="button" onclick="stopNow()"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Stop</button>
-                                                                                </span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                        <button type="submit" class="btn btn-primary" id="put">수정</button>
-                                                                    </div>
-                                                                </form>
-                                                                <div class="modal-footer">
-                                                                    <form method="POST" action="{{ url()->current().'/todo' }}">
-                                                                        @csrf
-                                                                        <input name="_method" type="hidden" value="DELETE">
-                                                                        <input type="hidden" name="list_id" value="{{$list->id}}">
-                                                                        <input type="hidden" name="id" value="{{$todo->id}}">
-                                                                        <input type="hidden" name="index" value="{{$index}}">
-                                                                        <button type="submit" class="btn btn-danger" >삭제</button>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <a href="{{route('todoList').'/'.$list->id.'/todo/'.$todo->id}}"><button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#putTodo" data-whatever="@mdo">수정하기</button></a>
                                                 </div>
                                             </div>
                                         </td>

@@ -22,6 +22,7 @@ class CreateTodosTable extends Migration
             //0 진행중, 1 완료, 2 기간 만료
             $table->tinyInteger('todo_list_id');
             $table->integer('user_id');
+            $table->tinyInteger('seq')->default(1);
             $table->softDeletes();
             $table->timestamps();
         });

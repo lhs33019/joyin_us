@@ -17,7 +17,6 @@ class CreateTodoListsTable extends Migration
             $table->increments('id');
             $table->char('name',50);
             $table->integer('todo_count')->default(0);
-            $table->text('todo_seq')->nullable();
             $table->tinyInteger('user_id');
             $table->softDeletes();
             $table->timestamps();

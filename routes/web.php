@@ -29,9 +29,10 @@ Route::group([
         Route::put('/{listId}', 'TodoController@updateTodoList');
         Route::delete('/{listId}', 'TodoController@deleteTodoList')->name('delete_todo_List');
 
+        Route::get('/{listId}/todo/{todoId}', 'TodoController@getTodo');
         Route::post('/{listId}/todo', 'TodoController@createTodo')->name('create_todo');
-        Route::put('/{listId}/todo/', 'TodoController@updateTodo');
-        Route::delete('/{listId}/todo/', 'TodoController@deleteTodo');
+        Route::put('/{listId}/todo/{todoId}', 'TodoController@updateTodo');
+        Route::delete('/{listId}/todo/{todoId}', 'TodoController@deleteTodo');
 
 });
 

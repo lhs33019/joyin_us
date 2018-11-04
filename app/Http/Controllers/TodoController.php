@@ -8,6 +8,7 @@ use App\User;
 use http\Env\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use DB;
 
 class TodoController extends Controller
 {
@@ -15,13 +16,11 @@ class TodoController extends Controller
 
         $lists = TodoList::where('user_id',\Auth::user()->id)->get();
 
-        $timeover = 0;
-        $todos = Todo::where('user_id',\Auth::user()->id)->get();
+        $ldate = date('Y-m-d H:i');
 
-        $ldate = date('Y-m-d H:i:s');
+        $todos = Todo::where('user_id',\Auth::user()->id)->where('due_date','<',$ldate)->get();
 
-
-        return view('Todo/todo_main',['lists' => $lists]);
+        return view('Todo/todo_main',['lists' => $lists, 'count' => count($todos), 'todos' => $todos]);
 
     }
 
@@ -37,18 +36,15 @@ class TodoController extends Controller
             abort(403);
         }
 
+        $todos = DB::table('todos')->where('todo_list_id',$list->id)->orderBy('seq')->get();
 
-        $seq = json_decode($list->todo_seq,true);
+        //return response()->json($todos);
 
-        $todos = [];
-
-        for ($i =1; $i<$list->todo_count+1; $i++) {
-
-            $todos[$i] = Todo::find($seq[$i]);
-
-        }
-
-        return view('Todo/todo_list_detail',['list' => $list, 'todos' => $todos]);
+        $data = array(
+            'list' => $list,
+            'todos' => $todos,
+        );
+        return view('Todo/todo_list_detail')->with($data);
 
     }
 
@@ -109,8 +105,12 @@ class TodoController extends Controller
     }
 
 
-    public function getTodo($id) {
-        return redirect(route('todoList'));
+    public function getTodo($listId, $todoId) {
+
+        $list = TodoList::find($listId);
+        $todo = Todo::find($todoId);
+
+        return view('Todo/todo_edit_view',['todo' => $todo, 'list' => $list]);
     }
 
     public function createTodo(Request $request) {
@@ -130,6 +130,7 @@ class TodoController extends Controller
                 'title' => 'required|string',
                 'content' => 'string',
                 'due_date' => 'string|nullable|regex:/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}/',
+                'seq'      => 'numeric',
             ])->validate();
         } catch (ValidationException $e) {
             abort(static::VALIDATION_FAILED);
@@ -138,18 +139,20 @@ class TodoController extends Controller
         $todo['todo_list_id'] = $request->list_id;
         $todo['user_id'] = \Auth::user()->id;
 
+        for ($i=$list->todo_count+1;$i>$request->seq;$i--) {
+
+            $past_seq = Todo::where('todo_list_id',$list->id)->where('seq',($i-1))->first();
+            $past_seq->seq = $i;
+            $past_seq->update();
+        }
         $todo = Todo::create($todo);
 
         if($todo==null) {
             return abort(409);
         }
 
-        $seq = json_decode($list->todo_seq,true);
-        for($i=$list->todo_count+1; $i>$request->seq;  $i--) {
-            $seq[$i] = $seq[$i-1];
-        }
-        $seq[$request->seq] = $todo['id'];
-        $list->todo_seq = json_encode($seq);
+        
+
         $list->todo_count = $list->todo_count +1;
         $list->update();
 
@@ -171,11 +174,12 @@ class TodoController extends Controller
 
         $list = TodoList::find($request->list_id);
 
+
         try {
             $validated = \Validator::make($request->all(), [
                 'title' => 'required|string',
                 'content' => 'string',
-                'due_date' => 'string|nullable|regex:/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}/'
+                'due_date' => 'string|nullable|regex:/^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}/',
             ])->validate();
         } catch (ValidationException $e) {
             abort(static::VALIDATION_FAILED);
@@ -185,23 +189,36 @@ class TodoController extends Controller
         $validated['user_id'] = \Auth::user()->id;
         $validated['isComplete'] = $request->isComplete;
 
+        //TODO: 배열 2->5 바꾼다할때 3,4,5가 앞으로 한칸씩 당겨져야한다. 5->2는 반대
+        if ($request->seq != null) {
+
+            if($request->seq > $todo->seq) {
+                for ($i=$todo->seq;$i<$request->seq;$i++) {
+
+                    $past_seq = Todo::where('todo_list_id',$list->id)->where('seq',($i+1))->first();
+                    $past_seq->seq = $i;
+                    $past_seq->update();
+                }
+            }
+            elseif($request->seq < $todo->seq) {
+
+                for ($i=$todo->seq;$i>$request->seq;$i--) {
+
+                    $past_seq = Todo::where('todo_list_id', $list->id)->where('seq', ($i - 1))->first();
+                    $past_seq->seq = $i;
+                    $past_seq->update();
+                }
+            }
+            $validated['seq'] = $request->seq;
+        }
+
         $todo->update($validated);
 
         if($todo==null) {
             return abort(409);
         }
 
-        //TODO: 배열 2->5 바꾼다할때 3,4,5가 앞으로 한칸씩 당겨져야한다. 5->2는 반대
-        if ($request->seq != null) {
 
-            $seq = json_decode($list->todo_seq,true);
-            for($i=$request->todo_count+1; $i>$request->index;  $i--) {
-                $seq[$i] = $seq[$i-1];
-            }
-            $seq[$request->seq] = $todo['id'];
-            $list->todo_seq = json_encode($seq);
-            $list->update();
-        }
 
 
         //return response()->json($request);
@@ -210,6 +227,7 @@ class TodoController extends Controller
     }
 
     public function deleteTodo(Request $request, $id) {
+
         $todo = Todo::find($request->id);
         $list = TodoList::find($request->list_id);
 
@@ -221,19 +239,17 @@ class TodoController extends Controller
             abort(403,"PERMISSION DENIED");
         }
 
-        $seq = json_decode($list->todo_seq,true);
-        for($i=$request->id; $i<$list->todo_count;  $i++) {
-            $seq[$i] = $seq[$i+1];
+        for ($i=$todo->seq;$i<$list->todo_count;$i++) {
+
+            $past_seq = Todo::where('todo_list_id',$list->id)->where('seq',($i+1))->first();
+            $past_seq->seq = $i;
+            $past_seq->update();
         }
 
-        //TODO: 삭제하고 순서 바뀌는거 버그 수정
-        unset($seq[$list->todo_count]);
-        $list->todo_seq = json_encode($seq);
+        $todo->forceDelete();
+
         $list->todo_count = $list->todo_count -1;
         $list->update();
-
-
-
 
         return redirect(route('todoList').'/'.$request->list_id);
     }

@@ -105,24 +105,14 @@
     <div class="box">
         <div class="notifications">
             <i class="fa fa-bell"></i>
-            <span class="num">4</span>
+            <span class="num">{{$count}}</span>
             <ul id="uls" onload="window.self.focus();">
+                @foreach($todos as $todo)
                 <li class="icon" >
                     <span class="icon"><i class="fa fa-user"></i></span>
-                    <span class="text">Someone Like Your Post</span>
+                    <span class="text">[{{$todo->title}}]-{{$todo->content}} 마감시간 경과</span>
                 </li>
-                <li class="icon">
-                    <span class="icon"><i class="fa fa-user"></i></span>
-                    <span class="text">Someone Like Your Photo</span>
-                </li>
-                <li class="icon">
-                    <span class="icon"><i class="fa fa-user"></i></span>
-                    <span class="text">Someone Dislike Your Post</span>
-                </li>
-                <li class="icon">
-                    <span class="icon"><i class="fa fa-user"></i></span>
-                    <span class="text">Someone Comment on Your Post</span>
-                </li>
+                @endforeach
             </ul>
         </div>
     </div>
