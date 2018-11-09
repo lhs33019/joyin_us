@@ -95,7 +95,6 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                    <a href="https://laravel-news.com">회원 탈퇴</a>
                     <a href="https://github.com/lhs33019/joyin_us">about source</a>
                 </div>
             @endauth

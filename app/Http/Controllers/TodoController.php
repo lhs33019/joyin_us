@@ -20,6 +20,11 @@ class TodoController extends Controller
 
         $todos = Todo::where('user_id',\Auth::user()->id)->where('due_date','<',$ldate)->get();
 
+        foreach ($todos as $todo) {
+            $todo->isComplete = 'over';
+            $todo->update();
+        }
+
         return view('Todo/todo_main',['lists' => $lists, 'count' => count($todos), 'todos' => $todos]);
 
     }
