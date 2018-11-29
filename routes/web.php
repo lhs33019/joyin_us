@@ -12,10 +12,30 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main/index');
 });
 
 
-Route::get('/connect', function () {
-    return response()->json(["hello" => "i got you!"]);
+Route::group([
+    'prefix' => 'list',
+    'middleware' => 'auth',
+], function () {
+/*        Route::get('', function () {
+            return view('Todo/todo_main'); })->name('todoList')->middleware('auth');
+*/
+        Route::get('', 'TodoController@getTodoLists')->name('todoList')->middleware('auth');
+        Route::get('/{listId}', 'TodoController@getTodoList');
+        Route::post('', 'TodoController@createTodoList')->name('create_todo_List');
+        Route::put('/{listId}', 'TodoController@updateTodoList');
+        Route::delete('/{listId}', 'TodoController@deleteTodoList')->name('delete_todo_List');
+
+        Route::get('/{listId}/todo/{todoId}', 'TodoController@getTodo');
+        Route::post('/{listId}/todo', 'TodoController@createTodo')->name('create_todo');
+        Route::put('/{listId}/todo/{todoId}', 'TodoController@updateTodo');
+        Route::delete('/{listId}/todo/{todoId}', 'TodoController@deleteTodo');
+
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
