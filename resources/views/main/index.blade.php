@@ -20,9 +20,10 @@
 
     <!-- Plugin CSS -->
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
-
+      <link rel="stylesheet" href="https://unpkg.com/vue-material@beta/dist/theme/default.css">
     <!-- Custom styles for this template -->
     <link href="css/freelancer.min.css" rel="stylesheet">
+
 
   </head>
 
@@ -50,6 +51,11 @@
               <li class="nav-item mx-0 mx-lg-1">
                   <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('todoList') }}">Todo Service</a>
               </li>
+              <div id="app">
+              <li class="nav-item mx-0 mx-lg-1">
+                  <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('card') }}">모집하기</a>
+              </li>
+            </div>
 
           </ul>
         </div>
@@ -68,8 +74,8 @@
     <header class="masthead bg-primary text-white text-center">
       <div class="container">
         <img class="img-fluid mb-5 d-block mx-auto" src="img/profile.png" alt="">
-        <h1 class="text-uppercase mb-0">Start Bootstrap</h1>
-        <hr class="star-light">
+        <h1 class="text-uppercase mb-0">Start</h1>
+          <hr class="star-light">
         <h2 class="font-weight-light mb-0">Web Developer - Graphic Artist - User Experience Designer</h2>
       </div>
     </header>
@@ -427,5 +433,6 @@
     <script src="js/freelancer.min.js"></script>
 
   </body>
+
 
 </html>

@@ -14,7 +14,9 @@
 Route::get('/', function () {
     return view('main/index');
 });
-
+Route::get('/card', function () {
+    return view('card');
+})->name('card');
 
 Route::group([
     'prefix' => 'list',
@@ -34,7 +36,13 @@ Route::group([
         Route::put('/{listId}/todo/{todoId}', 'TodoController@updateTodo');
         Route::delete('/{listId}/todo/{todoId}', 'TodoController@deleteTodo');
 
+
+
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
