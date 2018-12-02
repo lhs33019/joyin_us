@@ -36,7 +36,9 @@
         #write{
             text-align: right;
         }
-
+        .pad2{
+            padding-bottom: 20px;
+        }
         .wid{
             width:200px;
             height: 50px;
@@ -123,7 +125,7 @@
         </div>
         <div class="row">
             @foreach($meetings as $meeting)
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 pad2">
                     <div class="card">
                         <img class="card-img-top" src="//placeimg.com/280/180/tech" alt="Card image cap">
                         <div class="card-body">

@@ -66,7 +66,8 @@
                     <div class="form-group">
                         <label for="subject">
                             최대 인원수</label>
-                        <input type="text" class="form-control" name ="limit" id="subject" placeholder="Enter Number">
+                        <input type="number" name="limit" min="1" max="50">
+
                     </div>
                     <label for="subject">
                         모집기한</label>
