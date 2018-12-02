@@ -55,8 +55,18 @@
                             Participants</label>
                         <input type="text" class="form-control" name ="subject" id="subject" placeholder="Enter Number">
                     </div>
-
-
+                    <label for="subject">
+                        마감기한</label>
+                    <div class="input-group registration-date-time">
+                        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                        <input class="form-control" name="date" id="registration-date" type="date">
+                        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
+                        <input class="form-control" name="time" id="registration-time" type="time">
+                        <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" onclick="addNow()"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Now</button>
+                    <button class="btn btn-default" type="button" onclick="stopNow()"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Stop</button>
+                </span>
+                    </div>
                     {{--//글내용 입력 폼--}}
                     <div class="form-group">
                         <label for="content">Comment:</label>
