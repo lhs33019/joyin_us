@@ -129,7 +129,14 @@
                         <div class="card-body">
                             <h5 class="card-title border-bottom pb-3">{{ $meeting->title }}<a href="#" class="float-right d-inline-flex share"><i class="fas fa-share-alt text-primary"></i></a></h5>
                             <p class="card-text">{{$meeting->content}}</p>
-                            <a href="#" class="float-right">Read more <i class="fas fa-angle-double-right"></i></a>
+                            {{--마감기한--}}
+                            <span class="media-meta pull-right"> 111까지</span>
+                            {{--신청버튼(링크 알아서 넣으셈)--}}
+                            <button type="button" class="btn btn-success btn-sm">신청</button>
+
+                            <p>참여인원 / 총인원 :  </p>
+
+
                         </div>
                     </div>
                 </div>
