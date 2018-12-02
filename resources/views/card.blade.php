@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <link href="{{ URL::asset('css/todo_detail.css')}}" rel="stylesheet" >
+
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -132,11 +136,11 @@
                             <h5 class="card-title border-bottom pb-3">{{ $meeting->title }}<a href="#" class="float-right d-inline-flex share"><i class="fas fa-share-alt text-primary"></i></a></h5>
                             <p class="card-text">{{$meeting->content}}</p>
                             {{--마감기한--}}
-                            <span class="media-meta pull-right"> 111까지</span>
+                            <span class="media-meta pull-right"> {{$meeting->due_date}}까지</span>
                             {{--신청버튼(링크 알아서 넣으셈)--}}
                             <button type="button" class="btn btn-success btn-sm">신청</button>
 
-                            <p>참여인원 / 총인원 :  </p>
+                            <p>참여인원 / 총인원 : {{$meeting->join_number}} / {{$meeting->limit}}</p>
 
 
                         </div>

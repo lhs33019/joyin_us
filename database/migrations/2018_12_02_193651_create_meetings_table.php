@@ -17,7 +17,7 @@ class CreateMeetingsTable extends Migration
             $table->increments('id');
             $table->char('title');
             $table->text('content')->nullable();
-            $table->char('user_list')->default('');
+            $table->char('user_list')->default('[]');
             $table->char('due_date')->nullable();
             $table->integer('limit')->nullable();
             $table->integer('join_number')->default(0);

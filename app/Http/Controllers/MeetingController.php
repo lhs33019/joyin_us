@@ -39,6 +39,8 @@ class MeetingController extends Controller
 
         $meeting = Meeting::create($validated);
 
+        $meeting->addUser(\Auth::user());
+
         return redirect(route('card'));
 
     }
