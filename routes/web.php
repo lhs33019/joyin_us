@@ -14,12 +14,12 @@
 Route::get('/', function () {
     return view('main/index');
 });
-Route::get('/card', function () {
-    return view('card');
-})->name('card');
+Route::get('/card','MeetingController@getMeetings')->name('card');
 Route::get('/write', function () {
     return view('write');
-})->name('write');
+})->name('write')->middleware('auth');
+Route::post('/card', 'MeetingController@createMeeting')->name('create_card');
+
 Route::group([
     'prefix' => 'list',
     'middleware' => 'auth',
