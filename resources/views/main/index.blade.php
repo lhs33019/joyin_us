@@ -60,14 +60,32 @@
           </ul>
         </div>
       </div>
-
+            @guest
             <li class="nav-item mx-0 mx-lg-1" >
                 <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('login') }}">login</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
                 <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('register') }}">sign in </a>
             </li>
+            @endguest
+        @auth
+            <li class="nav-item mx-0 mx-lg-1" >
 
+                {{--<a class="nav-link py-3 px-0 px-lg-3" href="{{ route('logout') }}">logout</a>--}}
+                <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+                <a class="nav-link py-3 px-0 px-lg-3" href="">my page </a>
+            </li>
+        @endauth
     </nav>
 
     <!-- Header -->

@@ -57,7 +57,6 @@
                     </div>
 
 
-
                     {{--//글내용 입력 폼--}}
                     <div class="form-group">
                         <label for="content">Comment:</label>
