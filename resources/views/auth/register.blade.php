@@ -24,6 +24,17 @@
                                 @endif
                             </div>
                         </div>
+                        <!-- 성별 -->
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('성별') }}</label>
+                            <div class="col-md-6">
+                                <input type="radio" id="radio1" name="radios" value="all" checked>
+                                <label for="radio1">남자</label>
+                                <input type="radio" id="radio2" name="radios"value="false">
+                                <label for="radio2">여자</label>
+                            </div>
+
+                        </div>
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
@@ -60,6 +71,26 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        {{--관심분야--}}
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('관심분야') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+                        <!-- 나이 -->
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Age') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+
+
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

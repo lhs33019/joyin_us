@@ -52,7 +52,6 @@
 </head>
 
 <body id="page-top" >
-<div class= "padd" id="app">
     <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
         <div class="container">
             <a class="navbar-brand js-scroll-trigger" href="/">Po Do</a>
@@ -84,12 +83,32 @@
             </div>
         </div>
 
-        <li class="nav-item mx-0 mx-lg-1" >
-            <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('login') }}">login</a>
-        </li>
-        <li class="nav-item mx-0 mx-lg-1">
-            <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('register') }}">sign in </a>
-        </li>
+        @guest
+            <li class="nav-item mx-0 mx-lg-1" >
+                <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('login') }}">login</a>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+                <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('register') }}">sign in </a>
+            </li>
+        @endguest
+        @auth
+            <li class="nav-item mx-0 mx-lg-1" >
+
+                {{--<a class="nav-link py-3 px-0 px-lg-3" href="{{ route('logout') }}">logout</a>--}}
+                <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </li>
+            <li class="nav-item mx-0 mx-lg-1">
+                <a class="nav-link py-3 px-0 px-lg-3" href="">my page </a>
+            </li>
+        @endauth
 
     </nav>
 
@@ -148,8 +167,8 @@
 
     </section>
 
-</div>
 
-    <script src="{{ asset('js/app.js') }}"></script>
+
+    
 </body>
 </html>
