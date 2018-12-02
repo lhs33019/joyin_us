@@ -17,7 +17,9 @@ Route::get('/', function () {
 Route::get('/card', function () {
     return view('card');
 })->name('card');
-
+Route::get('/write', function () {
+    return view('write');
+})->name('write');
 Route::group([
     'prefix' => 'list',
     'middleware' => 'auth',

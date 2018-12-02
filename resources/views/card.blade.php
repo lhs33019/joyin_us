@@ -96,7 +96,7 @@
     <section class="portfolio " id="portfolio">
         <h1 class="text-center">리스트</h1>
         <div class="container paddpx">
-            <a href="#">
+            <a href="{{ route('write') }}">
             <button class="navbar-toggler navbar-toggler-left text-uppercase bg-primary text-white rounded" type="button" >
                 글쓰기
                 <i class="fas fa-bars"></i>
