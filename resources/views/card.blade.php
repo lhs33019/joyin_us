@@ -36,16 +36,16 @@
         #write{
             text-align: right;
         }
-        .wrap {
-            position: relative;
-        }
-        .second {
-            position: absolute;
-            top: 100px;
-            right: 130px;
+
+        .wid{
+            width:200px;
+            height: 50px;
+
         }
         .paddpx{
-            padding-left:50%;
+            text-align: center;
+            padding-top: 80px;
+            padding-bottom: 20px;
         }
 
     </style>
@@ -115,9 +115,9 @@
     <section class="portfolio " id="portfolio">
         <div class="container paddpx">
             <a href="{{ route('write') }}">
-                <button class="navbar-toggler navbar-toggler-left text-uppercase bg-primary text-white rounded" type="button" >
-                    글쓰기
-                    <i class="fas fa-bars"></i>
+                <button class="navbar-toggler navbar-toggler-left bg-primary text-white rounded wid" type="button" >
+                    모임 만들기
+
                 </button>
             </a>
         </div>
@@ -169,6 +169,6 @@
 
 
 
-    
+
 </body>
 </html>
