@@ -120,14 +120,12 @@ class TodoController extends Controller
 
     public function createTodo(Request $request) {
 
-        $duedate = $request->date.' '.$request->time;
         $list = TodoList::find($request->list_id);
 
-
+        $duedate = $request->date.' '.$request->time;
         if ($duedate == ' ') {
             $duedate = null;
         }
-
         $request['due_date'] = $duedate;
 
         try {

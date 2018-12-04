@@ -111,7 +111,7 @@
                 </form>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-                <a class="nav-link py-3 px-0 px-lg-3" href="">my page </a>
+                <a class="nav-link py-3 px-0 px-lg-3" href="{{route('home')}}">my page </a>
             </li>
         @endauth
 
@@ -119,7 +119,7 @@
 
     <section class="portfolio " id="portfolio">
         <div class="container paddpx">
-            <a href="{{ route('write') }}">
+            <a href="{{ route('make_card') }}">
                 <button class="navbar-toggler navbar-toggler-left bg-primary text-white rounded wid" type="button" >
                     모임 만들기
 
@@ -130,14 +130,14 @@
             @foreach($meetings as $meeting)
                 <div class="col-md-6 col-lg-4 pad2">
                     <div class="card">
-                        <img class="card-img-top" src="//placeimg.com/280/180/tech" alt="Card image cap">
+                        <img class="card-img-top" src="https://source.unsplash.com/random" alt="Card image cap" height="300px">
                         <div class="card-body">
                             <h5 class="card-title border-bottom pb-3">{{ $meeting->title }}<a href="#" class="float-right d-inline-flex share"><i class="fas fa-share-alt text-primary"></i></a></h5>
                             <p class="card-text">{{$meeting->content}}</p>
                             {{--마감기한--}}
                             <span class="media-meta pull-right"> {{$meeting->due_date}}까지</span>
                             {{--신청버튼(링크 알아서 넣으셈)--}}
-                            <button type="button" class="btn btn-success btn-sm">신청</button>
+                            <a href="{{url('/card/join').'/'.$meeting->id}}"><button type="button" class="btn btn-success btn-sm">신청</button></a>
 
                             <p>참여인원 / 총인원 : {{$meeting->join_number}} / {{$meeting->limit}}</p>
 

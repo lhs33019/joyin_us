@@ -18,10 +18,12 @@ class Meeting extends Model
             if (!$list) {
                 $list = [];
             }
-            array_push($list, $user->id);
-            $this->user_list = json_encode($list);
-            $this->join_number +=1;
-            $this->update();
+            if (!in_array($user->id,$list)) {
+                array_push($list, $user->id);
+                $this->user_list = json_encode($list);
+                $this->join_number +=1;
+                $this->update();
+            }
         }
     }
 }

@@ -15,13 +15,18 @@ Route::get('/', function () {
     return view('main/index');
 });
 Route::get('/cal', function () {
-    return view('cal');
-})->name('cal')->middleware('auth');
-Route::get('/card','MeetingController@getMeetings')->name('card');
-Route::get('/write', function () {
-    return view('write');
-})->name('write')->middleware('auth');
-Route::post('/card', 'MeetingController@createMeeting')->name('create_card');
+    return view('/main/cal');
+})->name('cal');
+
+Route::group([
+    'prefix' => 'card',
+], function () {
+    Route::get('/','MeetingController@getMeetings')->name('card');
+    Route::post('/', 'MeetingController@createMeeting')->name('create_card');
+    Route::get('/write', function () {
+        return view('/Meeting/write');})->name('make_card')->middleware('auth');
+    Route::get('/join/{id}', 'MeetingController@join_meeting')->middleware('auth');
+});
 
 Route::group([
     'prefix' => 'list',
@@ -40,9 +45,6 @@ Route::group([
         Route::post('/{listId}/todo', 'TodoController@createTodo')->name('create_todo');
         Route::put('/{listId}/todo/{todoId}', 'TodoController@updateTodo');
         Route::delete('/{listId}/todo/{todoId}', 'TodoController@deleteTodo');
-
-
-
 });
 
 Auth::routes();
