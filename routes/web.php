@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('main/index');
 });
+Route::get('/cal', function () {
+    return view('cal');
+})->name('cal')->middleware('auth');
 Route::get('/card','MeetingController@getMeetings')->name('card');
 Route::get('/write', function () {
     return view('write');

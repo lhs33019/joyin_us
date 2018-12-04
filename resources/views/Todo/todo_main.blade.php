@@ -71,7 +71,9 @@
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
-
+            <nav class="navbar navbar-default">
+            <a href="/"><button class="btn btn-default" >홈으로</button></a>
+            </nav>
             <div class="container-fluid">
                 <div class="row" style="margin-top:20px;">
                     @foreach($lists as $list)
