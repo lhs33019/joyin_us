@@ -94,7 +94,7 @@
         <img class="img-fluid mb-5 d-block mx-auto" src="img/profile.png" alt="">
         <h1 class="text-uppercase mb-0">Start</h1>
           <hr class="star-light">
-        <h2 class="font-weight-light mb-0">내 할일 작성 - 현재 진행중인 대외활동 목록 - 대외활동 참여하기</h2>
+        <h2 class="font-weight-light mb-0">내 할일 작성 - 현재 모집중인 팀 목록 - 팀 활동 참여하기</h2>
       </div>
     </header>
 
