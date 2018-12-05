@@ -14,7 +14,7 @@ class MeetingController extends Controller
 {
     public function getMeetings() {
 
-        $meetings = Meeting::query()->where('due_date','<',date('Y-m-d H:i'))
+        $meetings = Meeting::query()->where('due_date','>',date('Y-m-d H:i'))
             ->orWhere('due_date', '=', null)->orderBy('created_at', 'desc')->get();
 
         return view('/Meeting/card',['meetings' => $meetings]);
