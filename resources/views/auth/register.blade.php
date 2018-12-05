@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -26,7 +25,7 @@
                         </div>
                         <!-- 성별 -->
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('성별') }}</label>
+                            <label  class="col-md-4 col-form-label text-md-right">{{ __('성별') }}</label>
                             <div class="col-md-6">
                                 <input type="radio" id="radio1" name="radios" value="all" checked>
                                 <label for="radio1">남자</label>
@@ -73,20 +72,48 @@
                         </div>
                         {{--관심분야--}}
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('관심분야') }}</label>
+                            <label class="col-md-4 col-form-label text-md-right">{{ __('관심분야') }}</label>
+
+                                <div class="row clearfix" style="margin-left: 1px">
+                                    <div class="col-md-12 column">
+                                        <table class="table table-bordered table-hover" id="tab_logic">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center form-control">
+                                                    관심분야 입력
+                                                </th>
 
 
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr id='addr0'>
+
+                                                <td>
+                                                    <input type="text" name='name[]'  placeholder='Enter Full Name' class="form-control">
+                                                </td>
+
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                        </div>
+                        <div style="text-align: center ">
+                            <button id="add_row" class="btn" >Add Row</button>
+                            <button id='delete_row' class=" btn" >Delete Row</button>
                         </div>
                         <!-- 나이 -->
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Age') }}</label>
-
+                            <div class="col-md-6">
+                                <input class="form-control" >
+                            </div>
 
                         </div>
-
-
-
-
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
