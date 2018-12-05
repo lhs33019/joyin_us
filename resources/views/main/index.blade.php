@@ -89,9 +89,9 @@
     </nav>
 
     <!-- Header -->
-    <header class="masthead bg-primary text-white text-center">
+    <header class="masthead text-white bg-primary text-center" >
       <div class="container">
-        <img class="img-fluid mb-5 d-block mx-auto" src="img/profile.png" alt="">
+        <img class="img-fluid mb-5 d-block mx-auto" src="img/hs.jpg" alt="">
         <h1 class="text-uppercase mb-0">Start</h1>
           <hr class="star-light">
         <h2 class="font-weight-light mb-0">내 할일 작성 - 현재 모집중인 팀 목록 - 팀 활동 참여하기</h2>
