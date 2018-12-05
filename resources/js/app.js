@@ -19,12 +19,12 @@ import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default-dark.css' // This line here
 
-Vue.use(VueMaterial)
+Vue.use(VueMaterial);
 Vue.component('hello-world-component', require('./components/HelloWorld.vue'));
 window.onload = function () {
     const app = new Vue({
         el: '#app'
     });
-}
+};
 
 

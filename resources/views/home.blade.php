@@ -41,7 +41,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ \Auth::user()->name }}" required autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback" role="alert">
@@ -92,54 +92,17 @@
                                 </div>
                             </div>
                             {{--관심분야--}}
-                            <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">{{ __('관심분야') }}</label>
-
-                                <div class="row clearfix" style="margin-left: 1px">
-                                    <div class="col-md-12 column">
-                                        <table class="table table-bordered table-hover" id="tab_logic">
-                                            <thead>
-                                            <tr>
-                                                <th class="text-center form-control">
-                                                    관심분야 입력
-                                                </th>
-
-
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr id='addr0'>
-
-                                                <td>
-                                                    <input type="text" name='name[]'  placeholder='Enter Full Name' class="form-control">
-                                                </td>
-
-                                            </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div style="text-align: center ">
-                                <button id="add_row" class="btn" >Add Row</button>
-                                <button id='delete_row' class=" btn" >Delete Row</button>
-                            </div>
                             <!-- 나이 -->
                             <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Age') }}</label>
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('age') }}</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" >
+                                    <input class="form-control" name="age" value="{{ Auth::user()->age }}">
                                 </div>
-
                             </div>
-
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
+                                        {{ __('수정하기') }}
                                     </button>
                                 </div>
                             </div>
