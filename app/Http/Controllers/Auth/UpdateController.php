@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class UpdateController extends Controller
 {
@@ -26,30 +28,29 @@ class UpdateController extends Controller
     {
         $this->middleware('auth');
     }
-
-
     /**
      * Update a user instance after a valid registration.
      *
-     * @param  \Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  Request $request
+     *
      */
-    public function update(\Request $request)
+    public function update(Request $request)
     {
-        return response()->json($request);
+        if (!$request) {
+            redirect('/');
+        }
         $data = \Validator::make($request->all(), [
             'name' => 'string|max:255',
             'email' => 'string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required',
             'age' => 'numeric|nullable',
             'gender' => 'string',
-        ]);
+        ])->validate();
 
         $data['password'] = Hash::make($data['password']);
         $user = User::query()->where('id','=',\Auth::user()->id)->firstOrFail();
         $user->update($data);
 
-
-        return response()->view('main.index');
+        return redirect('/');
     }
 }
