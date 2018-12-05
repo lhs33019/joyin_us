@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use DB;
 
+/**
+ * Class MeetingController
+ * @package App\Http\Controllers
+ */
 class MeetingController extends Controller
 {
     public function getMeetings() {

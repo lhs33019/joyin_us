@@ -86,37 +86,34 @@
 
                 </ul>
             </div>
-        </div>
+            @guest
+                <li class="nav-item mx-0 mx-lg-1" >
+                    <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('login') }}">login</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('register') }}">sign in </a>
+                </li>
+            @endguest
+            @auth
+                <li class="nav-item mx-0 mx-lg-1" >
 
-        @guest
-            <li class="nav-item mx-0 mx-lg-1" >
-                <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('login') }}">login</a>
-            </li>
-            <li class="nav-item mx-0 mx-lg-1">
-                <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('register') }}">sign in </a>
-            </li>
-        @endguest
-        @auth
-            <li class="nav-item mx-0 mx-lg-1" >
-
-                {{--<a class="nav-link py-3 px-0 px-lg-3" href="{{ route('logout') }}">logout</a>--}}
-                <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
+                    {{--<a class="nav-link py-3 px-0 px-lg-3" href="{{ route('logout') }}">logout</a>--}}
+                    <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
+                        {{ __('Logout') }}
+                    </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </li>
-            <li class="nav-item mx-0 mx-lg-1">
-                <a class="nav-link py-3 px-0 px-lg-3" href="{{route('home')}}">my page </a>
-            </li>
-        @endauth
-
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3" href="{{route('home')}}">my page </a>
+                </li>
+            @endauth
+        </div>
     </nav>
-
     <section class="portfolio " id="portfolio">
         <div class="container paddpx">
             <a href="{{ route('make_card') }}">
@@ -149,12 +146,6 @@
                 </div>
             @endforeach
         </div>
-
-
     </section>
-
-
-
-
 </body>
 </html>

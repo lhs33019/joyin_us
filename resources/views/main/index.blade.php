@@ -59,42 +59,42 @@
 
           </ul>
         </div>
-      </div>
-            @guest
-            <li class="nav-item mx-0 mx-lg-1" >
-                <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('login') }}">login</a>
-            </li>
-            <li class="nav-item mx-0 mx-lg-1">
-                <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('register') }}">sign in </a>
-            </li>
-            @endguest
-        @auth
-            <li class="nav-item mx-0 mx-lg-1" >
+          @guest
+              <li class="nav-item mx-0 mx-lg-1" >
+                  <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('login') }}">login</a>
+              </li>
+              <li class="nav-item mx-0 mx-lg-1">
+                  <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('register') }}">sign in </a>
+              </li>
+          @endguest
+          @auth
+              <li class="nav-item mx-0 mx-lg-1" >
 
-                {{--<a class="nav-link py-3 px-0 px-lg-3" href="{{ route('logout') }}">logout</a>--}}
-                <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
+                  {{--<a class="nav-link py-3 px-0 px-lg-3" href="{{ route('logout') }}">logout</a>--}}
+                  <a class="nav-link py-3 px-0 px-lg-3" href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
+                      {{ __('Logout') }}
+                  </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </li>
-            <li class="nav-item mx-0 mx-lg-1">
-                <a class="nav-link py-3 px-0 px-lg-3" href="{{route('home')}}">my page </a>
-            </li>
-        @endauth
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                  </form>
+              </li>
+              <li class="nav-item mx-0 mx-lg-1">
+                  <a class="nav-link py-3 px-0 px-lg-3" href="{{route('home')}}">my page </a>
+              </li>
+          @endauth
+      </div>
     </nav>
 
     <!-- Header -->
     <header class="masthead text-white bg-primary text-center" >
       <div class="container">
         <img class="img-fluid mb-5 d-block mx-auto" src="img/hs.jpg" alt="">
-        <h1 class="text-uppercase mb-0">Start</h1>
+        <h1 class="text-uppercase mb-0">Team Building</h1>
           <hr class="star-light">
-        <h2 class="font-weight-light mb-0">내 할일 작성 - 현재 모집중인 팀 목록 - 팀 활동 참여하기</h2>
+        <h2 class="font-weight-light mb-0">할 일을 작성하고 현재 모집 중인 팀 목록을 확인하여 팀원으로 참여해보세요</h2>
       </div>
     </header>
 
@@ -105,10 +105,15 @@
             <hr class="star-dark mb-5">
             <div class="row">
                 <div class="col-lg-4 ml-auto">
-                    <p class="lead">PODO는 포트폴리오 도메인의 약자로 2018년에 서비스되었으며, KOREATECH 임희성, 이윤수 공동대표가 함께 시작한 굴지의 웹사이트입니다.</p>
+                    <p class="lead">PODO는 포트폴리오 도메인의 약자로 <br>
+                        2018년 12월에 릴리즈되었으며, <br>
+                        KOREATECH 학부생 <br>
+                        임희성, 이윤수 공동대표가 함께 시작한 <br>
+                        굴지의 웹사이트입니다.</p>
                 </div>
                 <div class="col-lg-4 mr-auto">
-                    <p class="lead">PODO에서는 기존의 대외활동 참여에 어려움을 겪었던 사람들을 위해 서비스 되었습니다. 신청자 본인이 함께할 대외활동 멤버를 게시글 작성으로 간편하게 구할수 있습니다. </p>
+                    <p class="lead">PODO는 기존의 대외활동 참여에 어려움을 겪던 사람들을 위해 서비스되었습니다. <br>
+                        함께할 대외활동 멤버를 게시글 작성으로 간편하게 구해보세요. </p>
                 </div>
             </div>
             <div class="text-center mt-4">
@@ -188,9 +193,6 @@
         </div>
       </div>
     </section>
-
-
-
     <!-- Contact Section -->
     <section id="contact">
       <div class="container">
@@ -204,7 +206,6 @@
 
           </div>
     </section>
-
     <!-- Footer -->
     <footer class="footer text-center">
       <div class="container">
@@ -247,27 +248,23 @@
           <div class="col-md-4">
             <h4 class="text-uppercase mb-4">About Po Do</h4>
             <p class="lead mb-0">Po Do는 신청자 모두가 프로젝트에 참여할 수 있는 사이트입니다.
-              <br><a href="http://startbootstrap.com">A.L.L</a></p>
+              <br><a href="https://github.com/lhs33019/joyin_us/tree/feature/todo_service">About Source</a></p>
           </div>
         </div>
       </div>
     </footer>
-
     <div class="copyright py-4 text-center text-white">
       <div class="container">
-        <small>Copyright &copy; Your Website 2018</small>
+        <small>Copyright &copy; PODO 2018</small>
       </div>
     </div>
-
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-to-top d-lg-none position-fixed ">
       <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top">
         <i class="fa fa-chevron-up"></i>
       </a>
     </div>
-
     <!-- Portfolio Modals -->
-
     <!-- Portfolio Modal 1 -->
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-1">
       <div class="portfolio-modal-dialog bg-white">
@@ -289,7 +286,6 @@
         </div>
       </div>
     </div>
-
     <!-- Portfolio Modal 2 -->
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-2">
       <div class="portfolio-modal-dialog bg-white">
@@ -311,7 +307,6 @@
         </div>
       </div>
     </div>
-
     <!-- Portfolio Modal 3 -->
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-3">
       <div class="portfolio-modal-dialog bg-white">
@@ -333,7 +328,6 @@
         </div>
       </div>
     </div>
-
     <!-- Portfolio Modal 4 -->
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-4">
       <div class="portfolio-modal-dialog bg-white">
@@ -355,7 +349,6 @@
         </div>
       </div>
     </div>
-
     <!-- Portfolio Modal 5 -->
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-5">
       <div class="portfolio-modal-dialog bg-white">
@@ -377,7 +370,6 @@
         </div>
       </div>
     </div>
-
     <!-- Portfolio Modal 6 -->
     <div class="portfolio-modal mfp-hide" id="portfolio-modal-6">
       <div class="portfolio-modal-dialog bg-white">
@@ -399,7 +391,6 @@
         </div>
       </div>
     </div>
-
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -414,8 +405,5 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/freelancer.min.js"></script>
-
   </body>
-
-
 </html>
