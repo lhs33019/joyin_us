@@ -122,7 +122,6 @@
             <a href="{{ route('make_card') }}">
                 <button class="navbar-toggler navbar-toggler-left bg-primary text-white rounded wid" type="button" >
                     모임 만들기
-
                 </button>
             </a>
         </div>
@@ -136,12 +135,15 @@
                             <p class="card-text">{{$meeting->content}}</p>
                             {{--마감기한--}}
                             <span class="media-meta pull-right"> {{$meeting->due_date}}까지</span>
-                            {{--신청버튼(링크 알아서 넣으셈)--}}
-                            <a href="{{url('/card/join').'/'.$meeting->id}}"><button type="button" class="btn btn-success btn-sm">신청</button></a>
-
+                            @auth
+                            @if (!in_array( Auth::user()->id, json_decode($meeting->user_list, True)) )
+                                {{--신청버튼--}}
+                                <a href="{{url('/card/join').'/'.$meeting->id}}"><button type="button" class="btn btn-success btn-sm">신청</button></a>
+                            @else
+                                <a href="{{url('/card/unjoin').'/'.$meeting->id}}"><button type="button" class="btn btn-danger">취소</button></a>
+                            @endif
+                            @endauth
                             <p>참여인원 / 총인원 : {{$meeting->join_number}} / {{$meeting->limit}}</p>
-
-
                         </div>
                     </div>
                 </div>

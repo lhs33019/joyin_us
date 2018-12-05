@@ -58,4 +58,13 @@ class MeetingController extends Controller
 
         return redirect()->route('card');
     }
+
+    public function unjoin_meeting($id) {
+
+        $meeting = Meeting::query()->where('id','=',$id)->firstOrFail();
+
+        $meeting->removeUser(\Auth::user());
+
+        return redirect()->route('card');
+    }
 }

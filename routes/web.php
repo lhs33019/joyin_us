@@ -26,6 +26,7 @@ Route::group([
     Route::get('/write', function () {
         return view('/Meeting/write');})->name('make_card')->middleware('auth');
     Route::get('/join/{id}', 'MeetingController@join_meeting')->middleware('auth');
+    Route::get('/unjoin/{id}', 'MeetingController@unjoin_meeting')->middleware('auth');
 });
 
 Route::group([
