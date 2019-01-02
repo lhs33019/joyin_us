@@ -91,7 +91,7 @@
     <!-- Header -->
     <header class="masthead text-white bg-primary text-center" >
       <div class="container">
-        <img class="img-fluid mb-5 d-block mx-auto" src="img/profile.jpg" alt="">
+        <img class="img-fluid mb-5 d-block mx-auto" src="img/profile.png" alt="">
         <h1 class="text-uppercase mb-0">Team Building</h1>
           <hr class="star-light">
         <h2 class="font-weight-light mb-0">할 일을 작성하고 현재 모집 중인 팀 목록을 확인하여 팀원으로 참여해보세요</h2>
